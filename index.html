@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>your academy name | Music Education</title>
+    <title>your academy name | Premium Music Education</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Themes */
+        /* CSS Variables */
         :root {
-            --bg-color: #F9FAFC;
-            --text-color: #1A1A1A;
-            --accent-color: #4B6CB7;
-            --button-color: #182848;
-            --hover-color: #DDE6F2;
-            --card-bg: #FFFFFF;
-            --section-bg: #FFFFFF;
-            --transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+            --primary: #e67e22;
+            --bg: #fcfcfc;
+            --text: #1f1f1f;
+            --accent: #f5deb3;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .dark-mode {
-            --bg-color: #1A1A1A;
-            --text-color: #F9FAFC;
-            --accent-color: #6A8BD8;
-            --button-color: #4B6CB7;
-            --hover-color: #2A3A5A;
-            --card-bg: #232323;
-            --section-bg: #1F1F1F;
+            --primary: #e67e22;
+            --bg: #1a1a1a;
+            --text: #f5f5f5;
+            --accent: #5c4d3d;
         }
 
         /* Base Styles */
@@ -38,10 +32,17 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
         }
 
         .container {
@@ -62,107 +63,47 @@
             transform: translateY(0);
         }
 
-        h1, h2, h3 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            letter-spacing: 1px;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
         .btn {
             display: inline-block;
-            background: var(--button-color);
+            background: var(--primary);
             color: white;
             padding: 15px 30px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 1px;
             transition: var(--transition);
-            border: 2px solid var(--button-color);
+            border: 2px solid var(--primary);
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: var(--accent-color);
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .btn:hover:before {
-            width: 100%;
         }
 
         .btn:hover {
-            color: white;
+            background: transparent;
+            color: var(--primary);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .btn:active {
-            transform: translateY(1px);
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
         }
 
-        .btn-accent {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-
-        .btn-accent:hover {
+        .btn-outline:hover {
+            background: var(--primary);
             color: white;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        /* Header Styles */
+        /* Header & Navigation */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(249, 250, 252, 0.95);
+            background: rgba(252, 252, 252, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: var(--transition);
@@ -180,15 +121,12 @@
         }
 
         .logo {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--button-color);
+            font-weight: 700;
+            color: var(--text);
             text-decoration: none;
             text-transform: lowercase;
-        }
-
-        .logo span {
-            color: var(--accent-color);
         }
 
         .nav-links {
@@ -196,17 +134,17 @@
             list-style: none;
         }
 
-        .nav-links li {
+        .nav-links > li {
             margin-left: 30px;
+            position: relative;
         }
 
         .nav-links a {
-            color: var(--text-color);
+            color: var(--text);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: var(--transition);
             position: relative;
-            font-size: 1.05rem;
         }
 
         .nav-links a:after {
@@ -216,7 +154,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-color);
+            background: var(--primary);
             transition: var(--transition);
         }
 
@@ -224,60 +162,81 @@
             width: 100%;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-left: 20px;
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg);
+            width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
             transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            z-index: 100;
         }
 
-        .theme-toggle:hover {
-            background: var(--hover-color);
-            color: var(--accent-color);
+        .dropdown li {
+            padding: 0;
+            margin: 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text);
+        }
+
+        .dropdown a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-links > li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .mobile-toggle {
             display: none;
             background: none;
             border: none;
-            color: var(--text-color);
+            color: var(--text);
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 1001;
             transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
         }
 
-        .mobile-toggle:hover {
-            background: var(--hover-color);
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.4), url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
             text-align: center;
             color: white;
-            animation: fadeIn 1.5s ease;
         }
 
         .hero-content {
@@ -286,171 +245,108 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            animation: slideIn 1s ease;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-transform: lowercase;
+            font-weight: 400;
+            letter-spacing: 2px;
         }
 
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            animation: slideIn 1.2s ease;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            font-weight: 300;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
         }
 
-        /* About Section */
-        .about {
-            background: var(--section-bg);
+        /* Gallery Section */
+        .gallery {
+            background: var(--bg);
         }
 
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: var(--transition);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .about-image:hover {
-            transform: scale(1.02);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Programs Section */
-        .programs {
-            background: var(--bg-color);
-        }
-
-        .programs-grid {
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
-        .program-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        .gallery-image {
+            height: 300px;
+            overflow: hidden;
         }
 
-        .program-icon {
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: var(--transition);
         }
 
-        .program-card:hover .program-icon {
-            transform: scale(1.1);
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.05);
         }
 
-        .program-card h3 {
-            color: var(--accent-color);
+        .gallery-caption {
+            padding: 20px;
+            background: var(--bg);
+        }
+
+        .gallery-caption p {
+            font-style: italic;
             margin-bottom: 15px;
         }
 
-        /* Features Section */
-        .features {
-            background: var(--section-bg);
+        .gallery-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: rotate(5deg) scale(1.1);
+        .gallery-item:hover .gallery-details {
+            max-height: 100px;
         }
 
         /* Testimonials */
         .testimonials {
-            background: var(--bg-color);
+            background: var(--accent);
         }
 
         .testimonial-container {
             max-width: 1000px;
             margin: 0 auto;
-            overflow: hidden;
             position: relative;
         }
 
         .testimonial-slide {
             display: none;
-            padding: 30px;
             animation: fadeIn 1s ease;
         }
 
         .active-slide {
-            display: block;
-        }
-
-        .testimonial-content {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 50px;
         }
 
         .testimonial-image {
             flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
         .testimonial-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .testimonial-text {
@@ -462,107 +358,153 @@
             font-style: italic;
             margin-bottom: 20px;
             position: relative;
-            padding: 0 20px;
-        }
-
-        .testimonial-quote:before,
-        .testimonial-quote:after {
-            content: '"';
-            font-size: 3rem;
-            color: var(--accent-color);
-            opacity: 0.3;
-            position: absolute;
+            padding-left: 30px;
         }
 
         .testimonial-quote:before {
-            top: -20px;
-            left: -20px;
-        }
-
-        .testimonial-quote:after {
-            bottom: -40px;
-            right: -20px;
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
         }
 
         .testimonial-author {
             font-weight: 600;
-            color: var(--accent-color);
-            margin-top: 20px;
+            color: var(--primary);
         }
 
         .testimonial-nav {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 40px;
+            gap: 10px;
         }
 
         .testimonial-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #ccc;
-            margin: 0 5px;
+            background: rgba(0,0,0,0.1);
             cursor: pointer;
             transition: var(--transition);
         }
 
         .testimonial-dot.active {
-            background: var(--accent-color);
+            background: var(--primary);
             transform: scale(1.2);
         }
 
-        /* Gallery */
-        .gallery {
-            background: var(--section-bg);
+        /* Features Section */
+        .features {
+            background: var(--bg);
         }
 
-        .gallery-grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 30px;
         }
 
-        .gallery-item {
-            position: relative;
+        .feature-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--bg);
             border-radius: 8px;
-            overflow: hidden;
-            height: 250px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* Programs Section */
+        .programs {
+            background: var(--accent);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .program-card {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: var(--transition);
         }
 
-        .gallery-item img {
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Blog Section */
+        .blog {
+            background: var(--bg);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: var(--bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            transform: translateY(100%);
-            transition: var(--transition);
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-
-        .gallery-item:hover img {
+        .blog-card:hover .blog-image img {
             transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 20px;
         }
 
         /* CTA Section */
         .cta {
-            background: linear-gradient(135deg, var(--button-color), var(--accent-color));
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             color: white;
             text-align: center;
             padding: 120px 0;
@@ -570,64 +512,67 @@
 
         .cta h2 {
             color: white;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        .cta h2:after {
-            background: white;
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         /* Newsletter */
         .newsletter {
-            background: var(--bg-color);
+            background: var(--bg);
             text-align: center;
         }
 
         .newsletter-form {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
             display: flex;
-            position: relative;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .newsletter-form input {
             flex: 1;
-            padding: 15px 20px;
-            border: 2px solid var(--hover-color);
-            border-radius: 30px 0 0 30px;
-            font-size: 1rem;
+            padding: 20px;
+            border: none;
             outline: none;
-            background: var(--card-bg);
-            color: var(--text-color);
+            font-size: 1rem;
+            background: var(--bg);
+            color: var(--text);
         }
 
         .newsletter-form button {
-            background: var(--accent-color);
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 0 30px;
-            border-radius: 0 30px 30px 0;
-            font-weight: 600;
+            padding: 0 40px;
+            font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
         }
 
         .newsletter-form button:hover {
-            background: var(--button-color);
+            background: var(--text);
         }
 
         .newsletter-message {
             margin-top: 20px;
             padding: 15px;
-            background: var(--hover-color);
+            background: var(--accent);
             border-radius: 8px;
-            color: var(--text-color);
             display: none;
         }
 
         /* Footer */
         footer {
-            background: var(--button-color);
+            background: var(--text);
             color: white;
             padding: 80px 0 30px;
         }
@@ -639,10 +584,10 @@
         }
 
         .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
             position: relative;
             padding-bottom: 15px;
-            margin-bottom: 20px;
-            color: white;
         }
 
         .footer-column h3:after {
@@ -652,7 +597,7 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: var(--accent-color);
+            background: var(--primary);
         }
 
         .contact-info {
@@ -667,7 +612,7 @@
 
         .contact-info i {
             margin-right: 10px;
-            color: var(--accent-color);
+            color: var(--primary);
         }
 
         .social-links {
@@ -690,7 +635,7 @@
         }
 
         .social-links a:hover {
-            background: var(--accent-color);
+            background: var(--primary);
             transform: translateY(-5px);
         }
 
@@ -703,7 +648,7 @@
         }
 
         .footer-links a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
             transition: var(--transition);
         }
@@ -719,7 +664,7 @@
             margin-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.5);
         }
 
         /* Animations */
@@ -728,38 +673,37 @@
             to { opacity: 1; }
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Mobile Menu Animation */
-        @keyframes slideDown {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        /* Music Notes Animation */
+        .music-note {
+            position: fixed;
+            color: var(--primary);
+            opacity: 0.3;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
         }
 
         /* Responsive Styles */
         @media (max-width: 1200px) {
-            .testimonial-content {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .active-slide {
                 flex-direction: column;
             }
         }
 
         @media (max-width: 992px) {
+            .gallery-grid,
             .programs-grid,
-            .features-grid {
+            .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
             }
 
             .footer-content {
@@ -769,7 +713,7 @@
 
         @media (max-width: 768px) {
             .mobile-toggle {
-                display: flex;
+                display: block;
             }
 
             .nav-links {
@@ -778,7 +722,7 @@
                 right: -100%;
                 width: 280px;
                 height: 100vh;
-                background: var(--card-bg);
+                background: var(--bg);
                 flex-direction: column;
                 padding: 100px 30px 30px;
                 transition: var(--transition);
@@ -789,39 +733,45 @@
                 right: 0;
             }
 
-            .nav-links li {
+            .nav-links > li {
                 margin: 15px 0;
-                animation: slideDown 0.5s ease forwards;
-                opacity: 0;
             }
 
-            .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
-            .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
-            .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
-            .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
-            .nav-links.active li:nth-child(5) { animation-delay: 0.5s; }
-            .nav-links.active li:nth-child(6) { animation-delay: 0.6s; }
+            .dropdown {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                background: rgba(0,0,0,0.05);
+                border-radius: 5px;
+                margin-top: 10px;
+            }
 
-            .about-content {
-                flex-direction: column;
+            .nav-links > li:hover .dropdown {
+                display: block;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
         @media (max-width: 576px) {
+            .gallery-grid,
             .programs-grid,
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
+            .blog-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -831,29 +781,24 @@
 
             .newsletter-form {
                 flex-direction: column;
+                border-radius: 30px;
             }
 
             .newsletter-form input {
-                border-radius: 30px;
-                margin-bottom: 10px;
+                border-radius: 30px 30px 0 0;
             }
 
             .newsletter-form button {
-                border-radius: 30px;
+                border-radius: 0 0 30px 30px;
                 padding: 15px;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Music Notes Animation -->
+    <div id="musicNotes"></div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -862,17 +807,36 @@
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#programs">Programs</a></li>
+                    <li>
+                        <a href="#">Courses</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Voice Training</a></li>
+                            <li><a href="#">Instrumentals</a></li>
+                            <li><a href="#">Music Production</a></li>
+                            <li><a href="#">Kids Class</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Events</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Upcoming Shows</a></li>
+                            <li><a href="#">Recitals</a></li>
+                            <li><a href="#">Guest Mentors</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#">Blog</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div style="display: flex; align-items: center;">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -881,128 +845,83 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Turn Passion into Performance</h1>
-                <p>Experience music like never before.<br>Learn, grow, and perform with confidence.</p>
-                <a href="https://wa.me/+2348176057889" class="btn btn-accent">Start Your Journey</a>
+                <h1>welcome to your academy name</h1>
+                <p>Where rhythm meets greatness</p>
+                <a href="https://wa.me/2348176057889" class="btn">Start Your Journey</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
         <div class="container">
-            <h2>About Our Academy</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>your academy name is dedicated to nurturing musical talent and fostering a lifelong appreciation for the arts. We've created a vibrant community where students of all ages and skill levels can explore their musical passions.</p>
-                    <p>Our mission is to provide exceptional music education in a supportive environment that encourages creativity, discipline, and personal growth. We believe that music has the power to transform lives and connect people across cultures and generations.</p>
-                    <p>With state-of-the-art facilities and a faculty of accomplished musicians, we offer a comprehensive curriculum that balances technical skill development with artistic expression.</p>
-                    <a href="#programs" class="btn">Explore Programs</a>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Music Studio">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programs Section -->
-    <section id="programs" class="programs">
-        <div class="container">
-            <h2>Programs We Offer</h2>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-piano"></i>
+            <h2>Our Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Band Practice">
                     </div>
-                    <h3>Piano</h3>
-                    <p>Master classical and contemporary piano techniques with our expert instructors.</p>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-drum"></i>
+                    <div class="gallery-caption">
+                        <p><i>Band practice session</i></p>
+                        <div class="gallery-details">
+                            <p>Our ensemble classes teach students how to collaborate and create music together.</p>
+                        </div>
                     </div>
-                    <h3>Drums</h3>
-                    <p>Develop rhythm and coordination through comprehensive drumming courses.</p>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-microphone"></i>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Piano Lesson">
                     </div>
-                    <h3>Voice</h3>
-                    <p>Unlock your vocal potential with personalized vocal coaching.</p>
+                    <div class="gallery-caption">
+                        <p><i>Piano masterclass</i></p>
+                        <div class="gallery-details">
+                            <p>From classical to contemporary, our piano program covers all styles and techniques.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-guitar"></i>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Violin Training">
                     </div>
-                    <h3>Guitar</h3>
-                    <p>Learn acoustic and electric guitar across various genres and styles.</p>
+                    <div class="gallery-caption">
+                        <p><i>Violin training</i></p>
+                        <div class="gallery-details">
+                            <p>String instrument training with focus on technique and musical expression.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-compact-disc"></i>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Live Performance">
                     </div>
-                    <h3>Production</h3>
-                    <p>Discover music production, mixing, and mastering techniques.</p>
+                    <div class="gallery-caption">
+                        <p><i>Student performance</i></p>
+                        <div class="gallery-details">
+                            <p>Regular performance opportunities help students build confidence on stage.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-music"></i>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1477233534935-f5e6fe7c1159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Recording Studio">
                     </div>
-                    <h3>Saxophone</h3>
-                    <p>Master the expressive art of saxophone playing from jazz to classical.</p>
+                    <div class="gallery-caption">
+                        <p><i>Recording session</i></p>
+                        <div class="gallery-details">
+                            <p>State-of-the-art recording facilities for production students.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2>Why Choose Us</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-graduate"></i>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Drum Workshop">
                     </div>
-                    <h3>Certified Instructors</h3>
-                    <p>Learn from professional musicians with extensive teaching experience.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-building"></i>
+                    <div class="gallery-caption">
+                        <p><i>Drum workshop</i></p>
+                        <div class="gallery-details">
+                            <p>Percussion training covering various styles from traditional to contemporary.</p>
+                        </div>
                     </div>
-                    <h3>Modern Studios</h3>
-                    <p>Practice in our state-of-the-art facilities with premium equipment.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3>Personalized Lessons</h3>
-                    <p>Customized instruction tailored to your goals and learning style.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Certificates Awarded</h3>
-                    <p>Receive recognized certifications upon program completion.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Friendly Community</h3>
-                    <p>Join a supportive network of fellow music enthusiasts.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Flexible Schedules</h3>
-                    <p>Choose lesson times that fit your busy lifestyle.</p>
                 </div>
             </div>
         </div>
@@ -1011,61 +930,51 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2>Student Testimonials</h2>
+            <h2>What Our Students Say</h2>
             <div class="testimonial-container">
                 <div class="testimonial-slide active-slide">
-                    <div class="testimonial-content">
-                        <div class="testimonial-image">
-                            <img src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=986&q=80" alt="Tolu A.">
-                        </div>
-                        <div class="testimonial-text">
-                            <p class="testimonial-quote">your academy name transformed my approach to music. The instructors are incredibly knowledgeable and supportive. I went from a complete beginner to performing live in just one year!</p>
-                            <p class="testimonial-author">- Tolu A., Piano Student</p>
-                        </div>
+                    <div class="testimonial-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Chioma A.">
+                    </div>
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">Joining this academy transformed how I express myself through music.</p>
+                        <p class="testimonial-author">- Chioma A., Voice Student</p>
                     </div>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <div class="testimonial-image">
-                            <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=986&q=80" alt="Chinedu K.">
-                        </div>
-                        <div class="testimonial-text">
-                            <p class="testimonial-quote">The production course opened my eyes to the world of music creation. I've released my first EP thanks to the skills I learned here. The facilities are state-of-the-art!</p>
-                            <p class="testimonial-author">- Chinedu K., Production Student</p>
-                        </div>
+                    <div class="testimonial-image">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Tunde O.">
+                    </div>
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">From beginner to leading praise—this place gave me purpose and skill.</p>
+                        <p class="testimonial-author">- Tunde O., Piano Student</p>
                     </div>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <div class="testimonial-image">
-                            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Halima O.">
-                        </div>
-                        <div class="testimonial-text">
-                            <p class="testimonial-quote">As an adult learner, I was nervous about starting voice lessons. The teachers at your academy name made me feel comfortable and helped me progress at my own pace. Highly recommend!</p>
-                            <p class="testimonial-author">- Halima O., Voice Student</p>
-                        </div>
+                    <div class="testimonial-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Halima S.">
+                    </div>
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">The mentors here teach more than music—they teach confidence.</p>
+                        <p class="testimonial-author">- Halima S., Guitar Student</p>
                     </div>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <div class="testimonial-image">
-                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Ifeanyi M.">
-                        </div>
-                        <div class="testimonial-text">
-                            <p class="testimonial-quote">The guitar program helped me develop my unique style and technique. I've gained so much confidence both on and off stage. This academy truly cares about their students.</p>
-                            <p class="testimonial-author">- Ifeanyi M., Guitar Student</p>
-                        </div>
+                    <div class="testimonial-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Ifeanyi M.">
+                    </div>
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">Discipline, fire, focus. This academy gave me direction.</p>
+                        <p class="testimonial-author">- Ifeanyi M., Production Student</p>
                     </div>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <div class="testimonial-image">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Blessing E.">
-                        </div>
-                        <div class="testimonial-text">
-                            <p class="testimonial-quote">My child has blossomed since joining your academy name. The teachers are patient and inspiring. It's wonderful to see her passion for music grow with each lesson.</p>
-                            <p class="testimonial-author">- Blessing E., Parent</p>
-                        </div>
+                    <div class="testimonial-image">
+                        <img src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=986&q=80" alt="Blessing E.">
+                    </div>
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">I now teach what I was taught here. That's how powerful this place is.</p>
+                        <p class="testimonial-author">- Blessing E., Alumni</p>
                     </div>
                 </div>
             </div>
@@ -1079,42 +988,93 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
+    <!-- Features Section -->
+    <section class="features">
         <div class="container">
-            <h2>Our Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Band Practice Session">
-                    <div class="gallery-caption">Band Practice Session</div>
+            <h2>Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Tailored Training</h3>
+                    <p>Customized lessons to match your goals and learning style</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Piano Masterclass">
-                    <div class="gallery-caption">Piano Masterclass</div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Performance Focus</h3>
+                    <p>Regular recitals and showcases to build confidence</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Violin Training">
-                    <div class="gallery-caption">Violin Training</div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Mentorship</h3>
+                    <p>Guidance from experienced music professionals</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Live Performance">
-                    <div class="gallery-caption">Live Performance</div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Success Stories</h3>
+                    <p>Proven track record of student achievements</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1477233534935-f5e6fe7c1159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Recording Studio">
-                    <div class="gallery-caption">Recording Studio</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs">
+        <div class="container">
+            <h2>Our Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">👶</div>
+                    <h3>Kids Academy</h3>
+                    <p>Fun, engaging music education for children ages 5-12. Builds foundational skills through play.</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Drum Workshop">
-                    <div class="gallery-caption">Drum Workshop</div>
+                <div class="program-card">
+                    <div class="program-icon">👨‍💼</div>
+                    <h3>Adults Weekend Class</h3>
+                    <p>Flexible scheduling for working professionals. Learn at your own pace with expert guidance.</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Guitar Lesson">
-                    <div class="gallery-caption">Guitar Lesson</div>
+                <div class="program-card">
+                    <div class="program-icon">🎛️</div>
+                    <h3>Production Bootcamp</h3>
+                    <p>Intensive training in music production, mixing, and mastering using industry-standard tools.</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Vocal Training">
-                    <div class="gallery-caption">Vocal Training</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container">
+            <h2>From Our Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog Post">
+                    </div>
+                    <div class="blog-content">
+                        <h3>5 Benefits of Music Education for Children</h3>
+                        <p>Discover how music training enhances cognitive development and creativity in young minds.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog Post">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Finding Your Unique Musical Voice</h3>
+                        <p>Tips from our instructors on developing your personal style as a musician.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog Post">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Preparing for Your First Performance</h3>
+                        <p>A step-by-step guide to overcoming stage fright and delivering your best.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1123,18 +1083,22 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Ready to begin your musical journey?</h2>
-            <a href="https://wa.me/+2348176057889" class="btn">Enroll Now via WhatsApp</a>
+            <h2>Join the Sound of Success Today</h2>
+            <div class="cta-buttons">
+                <a href="https://wa.me/2348176057889" class="btn">Chat on WhatsApp</a>
+                <a href="#contact" class="btn btn-outline">Book a Visit</a>
+                <a href="#newsletter" class="btn btn-outline">Newsletter</a>
+            </div>
         </div>
     </section>
 
     <!-- Newsletter Section -->
-    <section class="newsletter">
+    <section id="newsletter" class="newsletter">
         <div class="container">
             <h2>Stay Updated</h2>
-            <p>Subscribe to our newsletter for updates on workshops, events, and special offers.</p>
+            <p>Subscribe to our newsletter for the latest news, events, and special offers.</p>
             <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="Your email address" required>
+                <input type="email" placeholder="info@youracademy.com" required>
                 <button type="submit">Subscribe</button>
             </form>
             <div class="newsletter-message" id="newsletterMessage">
@@ -1149,43 +1113,37 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>your academy name</h3>
-                    <p>Transforming musical passion into exceptional performance.</p>
+                    <p>Transforming musical passion into exceptional performance since 2023.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/2348176057889"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Music Street, Lagos</li>
-                        <li><i class="fas fa-phone"></i> +234 817 605 7889</li>
-                        <li><i class="fas fa-envelope"></i> info@youracademyname.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am - 8pm, Sat: 10am - 4pm</li>
-                    </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#about">About</a></li>
                         <li><a href="#programs">Programs</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Programs</h3>
+                    <h3>Resources</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Piano</a></li>
-                        <li><a href="#">Guitar</a></li>
-                        <li><a href="#">Drums</a></li>
-                        <li><a href="#">Voice</a></li>
-                        <li><a href="#">Production</a></li>
-                        <li><a href="#">Saxophone</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 12 Soundwave Crescent, Lagos</li>
+                        <li><i class="fas fa-phone"></i> +234 817 605 7889</li>
+                        <li><i class="fas fa-envelope"></i> info@youracademy.com</li>
                     </ul>
                 </div>
             </div>
@@ -1261,9 +1219,6 @@
         
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const emailInput = newsletterForm.querySelector('input[type="email"]');
-            
-            // Show the message instead of alert
             newsletterMessage.style.display = 'block';
             newsletterForm.reset();
         });
@@ -1304,6 +1259,27 @@
                 }
             });
         });
+
+        // Music Notes Animation
+        function createMusicNotes() {
+            const notes = ['♪', '♫', '♩', '♬', '♭', '♮'];
+            const colors = ['#e67e22', '#f5deb3', '#ffffff', '#ffcc99'];
+            
+            for (let i = 0; i < 20; i++) {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + 'vw';
+                note.style.top = Math.random() * 100 + 'vh';
+                note.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                note.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                note.style.animationDelay = (Math.random() * 5) + 's';
+                note.style.color = colors[Math.floor(Math.random() * colors.length)];
+                document.getElementById('musicNotes').appendChild(note);
+            }
+        }
+
+        createMusicNotes();
     </script>
 </body>
 </html>
