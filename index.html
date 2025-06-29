@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>your academy name | Premium Music Education</title>
+    <title>Harmony Music Academy | Where Rhythm Meets Greatness</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables */
         :root {
             --primary: #e67e22;
+            --primary-dark: #d35400;
             --bg: #fcfcfc;
             --text: #1f1f1f;
-            --accent: #f5deb3;
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --gold: #f5deb3;
+            --gold-dark: #e6c48c;
+            --dark: #121212;
+            --light: #f5f5f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
-        .dark-mode {
-            --primary: #e67e22;
-            --bg: #1a1a1a;
-            --text: #f5f5f5;
-            --accent: #5c4d3d;
-        }
-
-        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -32,454 +28,624 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg);
             color: var(--text);
+            background-color: var(--bg);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: var(--transition);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-            cursor: pointer;
             position: relative;
-            overflow: hidden;
         }
 
-        .btn:hover {
-            background: transparent;
-            color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        /* Golden orb cursor */
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold) 0%, rgba(229, 194, 129, 0.4) 70%);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+            transition: transform 0.1s;
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
+        .cursor-trail.active {
+            transform: translate(-50%, -50%) scale(1.5);
         }
 
         /* Header & Navigation */
         header {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(252, 252, 252, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+            background-color: rgba(18, 18, 18, 0.95);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
             transition: var(--transition);
         }
 
-        .dark-mode header {
-            background: rgba(26, 26, 26, 0.95);
-        }
-
-        nav {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--text);
+            color: var(--gold);
             text-decoration: none;
-            text-transform: lowercase;
+            display: flex;
+            align-items: center;
         }
 
-        .nav-links {
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .nav-menu {
             display: flex;
             list-style: none;
         }
 
-        .nav-links > li {
-            margin-left: 30px;
+        .nav-item {
             position: relative;
+            margin-left: 1.5rem;
         }
 
-        .nav-links a {
-            color: var(--text);
+        .nav-link {
+            color: var(--bg);
             text-decoration: none;
             font-weight: 500;
+            font-size: 1.1rem;
             transition: var(--transition);
             position: relative;
         }
 
-        .nav-links a:after {
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background-color: var(--primary);
             transition: var(--transition);
         }
 
-        .nav-links a:hover:after {
+        .nav-link:hover::after {
             width: 100%;
         }
 
         .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
             position: absolute;
             top: 100%;
             left: 0;
-            background: var(--bg);
-            width: 220px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-color: var(--dark);
+            min-width: 220px;
+            padding: 1rem;
+            border-radius: 4px;
+            box-shadow: var(--shadow);
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
             transition: var(--transition);
-            z-index: 100;
+            z-index: 10;
         }
 
-        .dropdown li {
-            padding: 0;
-            margin: 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .dropdown li:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown a {
-            display: block;
-            padding: 12px 20px;
-            color: var(--text);
-        }
-
-        .dropdown a:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .nav-links > li:hover .dropdown {
+        .dropdown:hover .dropdown-content {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
 
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--bg);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover {
+            color: var(--primary);
+            padding-left: 0.5rem;
+        }
+
         .mobile-toggle {
             display: none;
-            background: none;
-            border: none;
-            color: var(--text);
             font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1001;
-            transition: var(--transition);
-        }
-
-        .theme-toggle {
+            color: var(--bg);
             background: none;
             border: none;
-            color: var(--text);
-            font-size: 1.2rem;
             cursor: pointer;
-            margin-left: 20px;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            color: var(--primary);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80') center/cover no-repeat;
+            min-height: 600px;
+            position: relative;
             display: flex;
             align-items: center;
-            text-align: center;
-            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(18, 18, 18, 0.7), rgba(230, 126, 34, 0.3));
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--bg);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            color: var(--bg);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.2);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: var(--text);
+            margin-left: 1rem;
+        }
+
+        .btn-gold:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-text {
             max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-transform: lowercase;
-            font-weight: 400;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            background: var(--bg);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 8px;
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
+            animation: fadeInLeft 1s ease forwards;
         }
 
-        .gallery-image {
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .gallery-image img {
+        .about-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .gallery-item:hover .gallery-image img {
+        .about-image:hover img {
             transform: scale(1.05);
         }
 
-        .gallery-caption {
-            padding: 20px;
-            background: var(--bg);
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            animation: fadeInRight 1s ease forwards;
         }
 
-        .gallery-caption p {
-            font-style: italic;
-            margin-bottom: 15px;
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
-        .gallery-details {
-            max-height: 0;
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Programs Section */
+        .programs {
+            background-color: var(--light);
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
             overflow: hidden;
-            transition: max-height 0.5s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: calc(0.2s * var(--i));
         }
 
-        .gallery-item:hover .gallery-details {
-            max-height: 100px;
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+
+        .program-content {
+            padding: 1.5rem;
+        }
+
+        .program-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .program-price {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .program-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 300px;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: white;
+            transform: translateY(100px);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-desc {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .gallery-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-btn {
+            flex: 1;
+            padding: 0.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .gallery-btn.whatsapp {
+            background-color: #25D366;
+        }
+
+        .gallery-btn.like {
+            background-color: transparent;
+            border: 1px solid white;
+        }
+
+        .gallery-btn.like.active {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .quantity-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--gold);
+            color: var(--text);
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         /* Testimonials */
         .testimonials {
-            background: var(--accent);
+            background-color: var(--light);
         }
 
         .testimonial-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
         }
 
         .testimonial-slide {
-            display: none;
-            animation: fadeIn 1s ease;
-        }
-
-        .active-slide {
+            min-width: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 50px;
+            padding: 2rem;
         }
 
-        .testimonial-image {
-            flex: 1;
-            text-align: center;
-        }
-
-        .testimonial-image img {
-            width: 200px;
-            height: 200px;
+        .testimonial-img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid var(--bg);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 4px solid var(--gold);
+            margin-bottom: 1.5rem;
         }
 
         .testimonial-text {
-            flex: 2;
-        }
-
-        .testimonial-quote {
             font-size: 1.2rem;
             font-style: italic;
-            margin-bottom: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 1.5rem;
             position: relative;
-            padding-left: 30px;
         }
 
-        .testimonial-quote:before {
+        .testimonial-text::before,
+        .testimonial-text::after {
             content: '"';
-            position: absolute;
-            left: 0;
-            top: -10px;
             font-size: 3rem;
-            color: var(--primary);
+            color: var(--gold);
+            position: absolute;
             opacity: 0.3;
         }
 
-        .testimonial-author {
-            font-weight: 600;
+        .testimonial-text::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .testimonial-text::after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        .testimonial-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
             color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-role {
+            color: var(--text);
+            opacity: 0.7;
         }
 
         .testimonial-nav {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
-            gap: 10px;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .testimonial-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.1);
+            background-color: var(--gold);
             cursor: pointer;
             transition: var(--transition);
         }
 
         .testimonial-dot.active {
-            background: var(--primary);
-            transform: scale(1.2);
-        }
-
-        /* Features Section */
-        .features {
-            background: var(--bg);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 40px 20px;
-            background: var(--bg);
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        /* Programs Section */
-        .programs {
-            background: var(--accent);
-        }
-
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .program-card {
-            background: var(--bg);
-            border-radius: 8px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: var(--transition);
-        }
-
-        .program-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .program-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+            background-color: var(--primary);
+            transform: scale(1.3);
         }
 
         /* Blog Section */
-        .blog {
-            background: var(--bg);
-        }
-
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .blog-card {
-            background: var(--bg);
-            border-radius: 8px;
+            background-color: white;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
             transition: var(--transition);
+            animation: fadeIn 1s ease forwards;
+            animation-delay: calc(0.2s * var(--i));
         }
 
         .blog-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .blog-image {
@@ -495,219 +661,295 @@
         }
 
         .blog-card:hover .blog-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .blog-content {
-            padding: 20px;
+            padding: 1.5rem;
         }
 
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
-            color: white;
-            text-align: center;
-            padding: 120px 0;
+        .blog-date {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
-        .cta h2 {
-            color: white;
-            margin-bottom: 40px;
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
         }
 
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
         }
 
         /* Newsletter */
         .newsletter {
-            background: var(--bg);
+            background: linear-gradient(45deg, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.8)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
             text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .newsletter-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .newsletter .section-title {
+            color: white;
         }
 
         .newsletter-form {
-            max-width: 600px;
-            margin: 0 auto;
             display: flex;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 500px;
+            margin: 2rem auto;
         }
 
-        .newsletter-form input {
+        .newsletter-input {
             flex: 1;
-            padding: 20px;
+            padding: 1rem;
             border: none;
-            outline: none;
+            border-radius: 4px 0 0 4px;
             font-size: 1rem;
-            background: var(--bg);
-            color: var(--text);
         }
 
-        .newsletter-form button {
-            background: var(--primary);
+        .newsletter-btn {
+            padding: 0 2rem;
+            background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0 40px;
-            font-weight: 500;
+            border-radius: 0 4px 4px 0;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
         }
 
-        .newsletter-form button:hover {
-            background: var(--text);
+        .newsletter-btn:hover {
+            background-color: var(--primary-dark);
         }
 
-        .newsletter-message {
-            margin-top: 20px;
-            padding: 15px;
-            background: var(--accent);
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
             border-radius: 8px;
-            display: none;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background-color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
         }
 
         /* Footer */
         footer {
-            background: var(--text);
-            color: white;
-            padding: 80px 0 30px;
+            background-color: var(--dark);
+            color: var(--bg);
+            padding: 4rem 2rem 2rem;
         }
 
-        .footer-content {
+        .footer-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 20px;
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-text {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 0.5rem;
         }
 
-        .footer-column h3:after {
+        .footer-title::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 50px;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .contact-info {
-            list-style: none;
-        }
-
-        .contact-info li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
+            height: 2px;
+            background-color: var(--primary);
         }
 
         .footer-links {
             list-style: none;
         }
 
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
+        .footer-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--bg);
             text-decoration: none;
+            opacity: 0.8;
             transition: var(--transition);
         }
 
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
+        .footer-link:hover {
+            opacity: 1;
+            color: var(--primary);
+            padding-left: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            color: var(--primary);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--bg);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
         }
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Music Notes Animation */
-        .music-note {
-            position: fixed;
-            color: var(--primary);
-            opacity: 0.3;
-            z-index: -1;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
+            from {
+                opacity: 0;
             }
-            
-            .active-slide {
-                flex-direction: column;
+            to {
+                opacity: 1;
             }
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .slide-in {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .gallery-grid,
-            .programs-grid,
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-title {
+                font-size: 3rem;
             }
         }
 
@@ -716,211 +958,293 @@
                 display: block;
             }
 
-            .nav-links {
+            .nav-menu {
                 position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: var(--bg);
-                flex-direction: column;
-                padding: 100px 30px 30px;
-                transition: var(--transition);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links > li {
-                margin: 15px 0;
-            }
-
-            .dropdown {
-                position: static;
+                top: 70px;
+                left: 0;
+                background-color: var(--dark);
                 width: 100%;
-                box-shadow: none;
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+
+            .nav-item {
+                margin: 1rem 0;
+            }
+
+            .dropdown-content {
+                position: static;
                 opacity: 1;
                 visibility: visible;
                 transform: none;
-                display: none;
-                background: rgba(0,0,0,0.05);
-                border-radius: 5px;
-                margin-top: 10px;
+                box-shadow: none;
+                padding: 0.5rem 0 0 1.5rem;
+                background: transparent;
             }
 
-            .nav-links > li:hover .dropdown {
-                display: block;
-            }
-
-            .hero h1 {
+            .hero-title {
                 font-size: 2.5rem;
             }
 
-            .hero p {
-                font-size: 1.2rem;
+            .hero-text {
+                font-size: 1rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .gallery-grid,
-            .programs-grid,
-            .blog-grid {
-                grid-template-columns: 1fr;
+            .btn {
+                display: block;
+                margin: 0.5rem auto;
+                width: 80%;
+                max-width: 300px;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 2rem;
             }
 
             .newsletter-form {
                 flex-direction: column;
-                border-radius: 30px;
             }
 
-            .newsletter-form input {
-                border-radius: 30px 30px 0 0;
+            .newsletter-input {
+                border-radius: 4px;
+                margin-bottom: 0.5rem;
             }
 
-            .newsletter-form button {
-                border-radius: 0 0 30px 30px;
-                padding: 15px;
+            .newsletter-btn {
+                border-radius: 4px;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Music Notes Animation -->
-    <div id="musicNotes"></div>
+    <!-- Golden Orb Cursor Trail -->
+    <div class="cursor-trail"></div>
 
     <!-- Header -->
     <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">your academy name</a>
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li>
-                        <a href="#">Courses</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Voice Training</a></li>
-                            <li><a href="#">Instrumentals</a></li>
-                            <li><a href="#">Music Production</a></li>
-                            <li><a href="#">Kids Class</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Events</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Upcoming Shows</a></li>
-                            <li><a href="#">Recitals</a></li>
-                            <li><a href="#">Guest Mentors</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div style="display: flex; align-items: center;">
-                    <button class="theme-toggle" id="themeToggle">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button class="mobile-toggle" id="mobileToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-music"></i>Harmony
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#programs" class="nav-link">Courses <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">Voice Training</a>
+                        <a href="#" class="dropdown-item">Instrumentals</a>
+                        <a href="#" class="dropdown-item">Music Production</a>
+                        <a href="#" class="dropdown-item">Kids Class</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>welcome to your academy name</h1>
-                <p>Where rhythm meets greatness</p>
-                <a href="https://wa.me/2348176057889" class="btn">Start Your Journey</a>
+        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nigerian music performance" class="hero-image">
+        <div class="hero-content">
+            <h2 class="hero-subtitle">welcome to</h2>
+            <h1 class="hero-title">Harmony Music Academy</h1>
+            <p class="hero-text">Where rhythm meets greatness. Discover your musical potential with Nigeria's premier music education institution.</p>
+            <a href="https://wa.me/+2348176057889" class="btn" target="_blank">Start Your Journey</a>
+            <a href="#programs" class="btn btn-gold">Explore Programs</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">Our Story</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1541689592655-f5f52825a3b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Music academy classroom">
+            </div>
+            <div class="about-text">
+                <h3>Preserving Nigeria's Musical Heritage</h3>
+                <p>Founded in 2005, Harmony Music Academy emerged from a passion to preserve and elevate Nigeria's rich musical traditions while embracing contemporary global music practices. Our journey began in a small Lagos studio with just two instructors and a dream to create a world-class music education institution.</p>
+                <p>Today, we stand as a beacon of musical excellence in West Africa, with state-of-the-art facilities in three major cities. Our mission is to cultivate the next generation of Nigerian musical talent by providing comprehensive training that honors our cultural roots while preparing students for global success.</p>
+                <p>At Harmony, we believe music is not just an art form but a powerful tool for personal transformation and cultural expression. Our unique pedagogy combines rigorous technical training with creative exploration, encouraging students to develop their authentic musical voice.</p>
+                <p>We're committed to creating an inclusive environment where students from all backgrounds can discover and develop their musical potential. Our graduates have gone on to perform with international orchestras, win prestigious awards, and establish successful music careers across Africa and beyond.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <h2 class="section-title">Program Highlights</h2>
+        <p class="section-text">Discover our comprehensive music programs designed for all skill levels and ages.</p>
+        <div class="program-grid">
+            <div class="program-card" style="--i:1">
+                <div class="program-image">
+                    <img src="https://images.unsplash.com/photo-1541689592655-f5f52825a3b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Voice Training">
+                </div>
+                <div class="program-content">
+                    <div class="program-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3 class="program-title">Voice Training</h3>
+                    <p>Master vocal techniques, breath control, and performance skills across genres from traditional Nigerian music to contemporary styles.</p>
+                    <div class="program-price">₦45,000/month</div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="program-card" style="--i:2">
+                <div class="program-image">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Instrumentals">
+                </div>
+                <div class="program-content">
+                    <div class="program-icon">
+                        <i class="fas fa-guitar"></i>
+                    </div>
+                    <h3 class="program-title">Instrumentals</h3>
+                    <p>Learn piano, guitar, traditional African instruments, and more with personalized instruction from master musicians.</p>
+                    <div class="program-price">₦60,000/month</div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="program-card" style="--i:3">
+                <div class="program-image">
+                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Music Production">
+                </div>
+                <div class="program-content">
+                    <div class="program-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3 class="program-title">Music Production</h3>
+                    <p>Explore the technical side of music with courses in recording, mixing, mastering, and digital production using industry-standard tools.</p>
+                    <div class="program-price">₦75,000/month</div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="program-card" style="--i:4">
+                <div class="program-image">
+                    <img src="https://images.unsplash.com/photo-1571974599782-87624638275e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Kids Class">
+                </div>
+                <div class="program-content">
+                    <div class="program-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3 class="program-title">Kids Class</h3>
+                    <p>Fun and engaging music discovery program for children ages 4-12, designed to build foundational skills through play and creativity.</p>
+                    <div class="program-price">₦35,000/month</div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery">
-        <div class="container">
-            <h2>Our Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Band Practice">
-                    </div>
-                    <div class="gallery-caption">
-                        <p><i>Band practice session</i></p>
-                        <div class="gallery-details">
-                            <p>Our ensemble classes teach students how to collaborate and create music together.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Piano Lesson">
-                    </div>
-                    <div class="gallery-caption">
-                        <p><i>Piano masterclass</i></p>
-                        <div class="gallery-details">
-                            <p>From classical to contemporary, our piano program covers all styles and techniques.</p>
-                        </div>
+        <h2 class="section-title">Our Gallery</h2>
+        <p class="section-text">Moments from our classes, performances, and community events.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="--i:1">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Student Recital" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Annual Student Recital</h3>
+                    <p class="gallery-desc">Our talented students showcase their progress in a formal concert setting.</p>
+                    <div class="quantity-badge">15 spots left</div>
+                    <div class="gallery-actions">
+                        <button class="gallery-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="gallery-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button class="gallery-btn like"><i class="far fa-heart"></i> <span class="like-count">32</span></button>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Violin Training">
-                    </div>
-                    <div class="gallery-caption">
-                        <p><i>Violin training</i></p>
-                        <div class="gallery-details">
-                            <p>String instrument training with focus on technique and musical expression.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Live Performance">
-                    </div>
-                    <div class="gallery-caption">
-                        <p><i>Student performance</i></p>
-                        <div class="gallery-details">
-                            <p>Regular performance opportunities help students build confidence on stage.</p>
-                        </div>
+            </div>
+            <div class="gallery-item" style="--i:2">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Masterclass" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Jazz Masterclass</h3>
+                    <p class="gallery-desc">International jazz artist teaching improvisation techniques.</p>
+                    <div class="quantity-badge">8 spots left</div>
+                    <div class="gallery-actions">
+                        <button class="gallery-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="gallery-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button class="gallery-btn like"><i class="far fa-heart"></i> <span class="like-count">45</span></button>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1477233534935-f5e6fe7c1159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Recording Studio">
-                    </div>
-                    <div class="gallery-caption">
-                        <p><i>Recording session</i></p>
-                        <div class="gallery-details">
-                            <p>State-of-the-art recording facilities for production students.</p>
-                        </div>
+            </div>
+            <div class="gallery-item" style="--i:3">
+                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Recording Session" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Studio Recording</h3>
+                    <p class="gallery-desc">Students gain real-world experience in our professional recording studio.</p>
+                    <div class="quantity-badge">6 spots left</div>
+                    <div class="gallery-actions">
+                        <button class="gallery-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="gallery-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button class="gallery-btn like"><i class="far fa-heart"></i> <span class="like-count">27</span></button>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Drum Workshop">
+            </div>
+            <div class="gallery-item" style="--i:4">
+                <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Traditional Class" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Traditional Music Class</h3>
+                    <p class="gallery-desc">Learning to play the talking drum with master drummer Adebayo.</p>
+                    <div class="quantity-badge">Full</div>
+                    <div class="gallery-actions">
+                        <button class="gallery-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="gallery-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button class="gallery-btn like"><i class="far fa-heart"></i> <span class="like-count">63</span></button>
                     </div>
-                    <div class="gallery-caption">
-                        <p><i>Drum workshop</i></p>
-                        <div class="gallery-details">
-                            <p>Percussion training covering various styles from traditional to contemporary.</p>
-                        </div>
+                </div>
+            </div>
+            <div class="gallery-item" style="--i:5">
+                <img src="https://images.unsplash.com/photo-1453738773917-9c3eff1db985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ensemble Practice" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">String Ensemble</h3>
+                    <p class="gallery-desc">Advanced students rehearsing for international competition.</p>
+                    <div class="quantity-badge">Audition Only</div>
+                    <div class="gallery-actions">
+                        <button class="gallery-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="gallery-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button class="gallery-btn like"><i class="far fa-heart"></i> <span class="like-count">38</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" style="--i:6">
+                <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Music Camp" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Summer Music Camp</h3>
+                    <p class="gallery-desc">Intensive 4-week program for young musicians ages 12-18.</p>
+                    <div class="quantity-badge">12 spots left</div>
+                    <div class="gallery-actions">
+                        <button class="gallery-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="gallery-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button class="gallery-btn like"><i class="far fa-heart"></i> <span class="like-count">56</span></button>
                     </div>
                 </div>
             </div>
@@ -929,53 +1253,39 @@
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2>What Our Students Say</h2>
-            <div class="testimonial-container">
-                <div class="testimonial-slide active-slide">
-                    <div class="testimonial-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Chioma A.">
-                    </div>
-                    <div class="testimonial-text">
-                        <p class="testimonial-quote">Joining this academy transformed how I express myself through music.</p>
-                        <p class="testimonial-author">- Chioma A., Voice Student</p>
-                    </div>
+        <h2 class="section-title">Student Success Stories</h2>
+        <p class="section-text">Hear what our students and alumni have to say about their experience.</p>
+        <div class="testimonial-container">
+            <div class="testimonial-wrapper">
+                <div class="testimonial-slide">
+                    <img src="assets/images/chioma.jpg" alt="Chioma" class="testimonial-img">
+                    <p class="testimonial-text">Harmony Academy transformed my approach to music. The vocal techniques I learned helped me win the Nigerian Idol competition and launch my professional career.</p>
+                    <h4 class="testimonial-name">Chioma Adebayo</h4>
+                    <p class="testimonial-role">Recording Artist & Voice Graduate</p>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-image">
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Tunde O.">
-                    </div>
-                    <div class="testimonial-text">
-                        <p class="testimonial-quote">From beginner to leading praise—this place gave me purpose and skill.</p>
-                        <p class="testimonial-author">- Tunde O., Piano Student</p>
-                    </div>
+                    <img src="assets/images/tunde.jpg" alt="Tunde" class="testimonial-img">
+                    <p class="testimonial-text">The production program equipped me with skills that landed me a job at a major Lagos studio just three months after graduation. The hands-on training is unmatched.</p>
+                    <h4 class="testimonial-name">Tunde Okafor</h4>
+                    <p class="testimonial-role">Music Producer & Sound Engineer</p>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-image">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Halima S.">
-                    </div>
-                    <div class="testimonial-text">
-                        <p class="testimonial-quote">The mentors here teach more than music—they teach confidence.</p>
-                        <p class="testimonial-author">- Halima S., Guitar Student</p>
-                    </div>
+                    <img src="assets/images/halima.jpg" alt="Halima" class="testimonial-img">
+                    <p class="testimonial-text">As a mother, I wanted my children to appreciate our musical heritage. The kids program does this beautifully while making learning incredibly fun.</p>
+                    <h4 class="testimonial-name">Halima Yusuf</h4>
+                    <p class="testimonial-role">Parent of Two Students</p>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-image">
-                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Ifeanyi M.">
-                    </div>
-                    <div class="testimonial-text">
-                        <p class="testimonial-quote">Discipline, fire, focus. This academy gave me direction.</p>
-                        <p class="testimonial-author">- Ifeanyi M., Production Student</p>
-                    </div>
+                    <img src="assets/images/blessing.jpg" alt="Blessing" class="testimonial-img">
+                    <p class="testimonial-text">The piano instructors at Harmony are simply the best. In just one year, I progressed from beginner to performing in public recitals with confidence.</p>
+                    <h4 class="testimonial-name">Blessing Okon</h4>
+                    <p class="testimonial-role">Piano Student</p>
                 </div>
                 <div class="testimonial-slide">
-                    <div class="testimonial-image">
-                        <img src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=986&q=80" alt="Blessing E.">
-                    </div>
-                    <div class="testimonial-text">
-                        <p class="testimonial-quote">I now teach what I was taught here. That's how powerful this place is.</p>
-                        <p class="testimonial-author">- Blessing E., Alumni</p>
-                    </div>
+                    <img src="assets/images/ifeanyi.jpg" alt="Ifeanyi" class="testimonial-img">
+                    <p class="testimonial-text">The academy's industry connections helped me secure an internship at a major record label while still studying. This practical experience is invaluable.</p>
+                    <h4 class="testimonial-name">Ifeanyi Chukwu</h4>
+                    <p class="testimonial-role">Music Business Student</p>
                 </div>
             </div>
             <div class="testimonial-nav">
@@ -988,298 +1298,300 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2>Why Choose Us</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Tailored Training</h3>
-                    <p>Customized lessons to match your goals and learning style</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎵</div>
-                    <h3>Performance Focus</h3>
-                    <p>Regular recitals and showcases to build confidence</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <h3>Mentorship</h3>
-                    <p>Guidance from experienced music professionals</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Success Stories</h3>
-                    <p>Proven track record of student achievements</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programs Section -->
-    <section class="programs">
-        <div class="container">
-            <h2>Our Programs</h2>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <div class="program-icon">👶</div>
-                    <h3>Kids Academy</h3>
-                    <p>Fun, engaging music education for children ages 5-12. Builds foundational skills through play.</p>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">👨‍💼</div>
-                    <h3>Adults Weekend Class</h3>
-                    <p>Flexible scheduling for working professionals. Learn at your own pace with expert guidance.</p>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">🎛️</div>
-                    <h3>Production Bootcamp</h3>
-                    <p>Intensive training in music production, mixing, and mastering using industry-standard tools.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Blog Section -->
-    <section class="blog">
-        <div class="container">
-            <h2>From Our Blog</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog Post">
-                    </div>
-                    <div class="blog-content">
-                        <h3>5 Benefits of Music Education for Children</h3>
-                        <p>Discover how music training enhances cognitive development and creativity in young minds.</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
+    <section id="blog" class="blog">
+        <h2 class="section-title">Music Insights</h2>
+        <p class="section-text">Latest articles from our instructors and guest artists.</p>
+        <div class="blog-grid">
+            <div class="blog-card" style="--i:1">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="African Rhythms">
                 </div>
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog Post">
-                    </div>
-                    <div class="blog-content">
-                        <h3>Finding Your Unique Musical Voice</h3>
-                        <p>Tips from our instructors on developing your personal style as a musician.</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog Post">
-                    </div>
-                    <div class="blog-content">
-                        <h3>Preparing for Your First Performance</h3>
-                        <p>A step-by-step guide to overcoming stage fright and delivering your best.</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
+                <div class="blog-content">
+                    <div class="blog-date">June 15, 2023 | African Music</div>
+                    <h3 class="blog-title">The Evolution of Traditional African Rhythms in Contemporary Music</h3>
+                    <p class="blog-excerpt">Explore how ancient rhythmic patterns from across Africa are finding new expression in today's global music scene.</p>
+                    <a href="#" class="btn">Read More</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Join the Sound of Success Today</h2>
-            <div class="cta-buttons">
-                <a href="https://wa.me/2348176057889" class="btn">Chat on WhatsApp</a>
-                <a href="#contact" class="btn btn-outline">Book a Visit</a>
-                <a href="#newsletter" class="btn btn-outline">Newsletter</a>
+            <div class="blog-card" style="--i:2">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Vocal Health">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">May 28, 2023 | Voice Training</div>
+                    <h3 class="blog-title">Essential Vocal Health Tips Every Singer Should Know</h3>
+                    <p class="blog-excerpt">Protect your most valuable instrument with these practical vocal care strategies from our voice faculty.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card" style="--i:3">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Home Studio">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">May 10, 2023 | Music Production</div>
+                    <h3 class="blog-title">Building Your First Home Studio on a Budget</h3>
+                    <p class="blog-excerpt">A comprehensive guide to setting up a professional-quality recording space without breaking the bank.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Newsletter Section -->
-    <section id="newsletter" class="newsletter">
-        <div class="container">
-            <h2>Stay Updated</h2>
-            <p>Subscribe to our newsletter for the latest news, events, and special offers.</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="info@youracademy.com" required>
-                <button type="submit">Subscribe</button>
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2 class="section-title">Stay Tuned</h2>
+            <p class="section-text">Subscribe to our newsletter for exclusive content, event announcements, and special offers.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
             </form>
-            <div class="newsletter-message" id="newsletterMessage">
-                Functionality coming soon — stay tuned!
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-text">Find answers to common questions about our programs and enrollment process.</p>
+        <div class="faq-container">
+            <div class="faq-item" style="--i:1">
+                <div class="faq-question">
+                    What is the minimum age for enrollment? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer programs for all ages! Our youngest students start at age 4 in our Music Explorers program. For children under 4, we recommend our parent-child music classes. Instrument-specific programs typically begin at age 6 or 7, depending on physical development and instrument size.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="--i:2">
+                <div class="faq-question">
+                    Do I need prior musical experience? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Not at all! We welcome complete beginners. Our programs are designed to accommodate all skill levels. During your initial consultation, we'll assess your experience and recommend the appropriate starting point. Many of our most successful students began with no prior musical training.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="--i:3">
+                <div class="faq-question">
+                    What instruments do you offer lessons for? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer instruction for a wide range of instruments including piano, guitar (acoustic, electric, bass), violin, cello, flute, trumpet, saxophone, drums, and traditional African instruments like the talking drum, shekere, and kalimba. If you don't see your instrument listed, please contact us as we may still be able to accommodate you.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="--i:4">
+                <div class="faq-question">
+                    Are payment plans available? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer flexible payment options to make music education accessible. Most programs can be paid in monthly installments. We also offer sibling discounts and scholarships for exceptionally talented students with financial need. Contact our admissions office to discuss the best payment solution for your situation.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="--i:5">
+                <div class="faq-question">
+                    Can I schedule a trial lesson? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We encourage all prospective students to schedule a complimentary 30-minute trial lesson. This allows you to meet the instructor, experience our teaching approach, and ensure it's the right fit before committing. Contact us to schedule your trial lesson at any of our campus locations.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="--i:6">
+                <div class="faq-question">
+                    Do you host student performances? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, performance is an integral part of music education. We host quarterly recitals at our performance hall, community outreach concerts, and an annual gala featuring our most advanced students. All students are encouraged but not required to participate in performance opportunities when they feel ready.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="--i:7">
+                <div class="faq-question">
+                    Do you offer certification? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Upon completion of our comprehensive programs, students receive a Harmony Academy certificate. We also prepare students for international certification through ABRSM (Associated Board of the Royal Schools of Music) and Trinity College London examinations. Our certification programs are recognized worldwide.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="--i:8">
+                <div class="faq-question">
+                    Are online classes available? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer both in-person and online instruction. Our virtual classes are conducted via secure video conference with the same qualified instructors. While we believe in-person instruction offers certain advantages, our online programs have proven highly effective, especially for students outside our campus cities.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>your academy name</h3>
-                    <p>Transforming musical passion into exceptional performance since 2023.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://wa.me/2348176057889"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#programs">Programs</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 12 Soundwave Crescent, Lagos</li>
-                        <li><i class="fas fa-phone"></i> +234 817 605 7889</li>
-                        <li><i class="fas fa-envelope"></i> info@youracademy.com</li>
-                    </ul>
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="#" class="footer-logo"><i class="fas fa-music"></i>Harmony</a>
+                <p class="footer-text">Where rhythm meets greatness. Cultivating Nigeria's musical talent since 2005.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 your academy name. All rights reserved.</p>
+            <div class="footer-col">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Home</a></li>
+                    <li><a href="#about" class="footer-link">About Us</a></li>
+                    <li><a href="#programs" class="footer-link">Programs</a></li>
+                    <li><a href="#gallery" class="footer-link">Gallery</a></li>
+                    <li><a href="#testimonials" class="footer-link">Testimonials</a></li>
+                    <li><a href="#faq" class="footer-link">FAQ</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Programs</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Voice Training</a></li>
+                    <li><a href="#" class="footer-link">Piano Lessons</a></li>
+                    <li><a href="#" class="footer-link">Guitar Mastery</a></li>
+                    <li><a href="#" class="footer-link">Music Production</a></li>
+                    <li><a href="#" class="footer-link">Kids Music Classes</a></li>
+                    <li><a href="#" class="footer-link">Traditional Instruments</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Contact Us</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <div>3 Harmony Lane, Victoria Island, Lagos, Nigeria</div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt contact-icon"></i>
+                    <div>+234 817 605 7889</div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div>info@harmonyacademy.com</div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock contact-icon"></i>
+                    <div>Mon-Fri: 9am - 7pm | Sat: 10am - 4pm</div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Harmony Music Academy. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.querySelector('.nav-links');
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
 
         mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileToggle.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            navMenu.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
         });
 
-        // Dark Mode Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
 
-        // Check for saved theme preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
             
-            // Save user preference
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
         });
 
-        // Testimonial Carousel
+        // Testimonial Slider
+        const testimonialWrapper = document.querySelector('.testimonial-wrapper');
         const testimonialSlides = document.querySelectorAll('.testimonial-slide');
         const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        
         let currentSlide = 0;
-
-        function showSlide(n) {
-            testimonialSlides.forEach(slide => slide.classList.remove('active-slide'));
+        
+        function showSlide(index) {
+            testimonialWrapper.style.transform = `translateX(-${index * 100}%)`;
+            
             testimonialDots.forEach(dot => dot.classList.remove('active'));
+            testimonialDots[index].classList.add('active');
             
-            currentSlide = (n + testimonialSlides.length) % testimonialSlides.length;
-            
-            testimonialSlides[currentSlide].classList.add('active-slide');
-            testimonialDots[currentSlide].classList.add('active');
+            currentSlide = index;
         }
-
+        
         testimonialDots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 showSlide(index);
             });
         });
-
-        // Auto rotate testimonials
+        
+        // Auto-advance testimonials
         setInterval(() => {
-            showSlide(currentSlide + 1);
+            currentSlide = (currentSlide + 1) % testimonialSlides.length;
+            showSlide(currentSlide);
         }, 5000);
 
-        // Newsletter Form
-        const newsletterForm = document.getElementById('newsletterForm');
-        const newsletterMessage = document.getElementById('newsletterMessage');
+        // Gallery Like Button
+        const likeButtons = document.querySelectorAll('.gallery-btn.like');
         
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            newsletterMessage.style.display = 'block';
-            newsletterForm.reset();
-        });
-
-        // Scroll animations
-        function checkScroll() {
-            const sections = document.querySelectorAll('section');
-            const windowHeight = window.innerHeight;
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const likeCount = this.querySelector('.like-count');
+                let count = parseInt(likeCount.textContent);
                 
-                if (sectionTop < windowHeight - 150) {
-                    section.classList.add('visible');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                if (this.classList.contains('active')) {
+                    count--;
+                    this.classList.remove('active');
+                    this.querySelector('i').classList.remove('fas');
+                    this.querySelector('i').classList.add('far');
+                } else {
+                    count++;
+                    this.classList.add('active');
+                    this.querySelector('i').classList.remove('far');
+                    this.querySelector('i').classList.add('fas');
                 }
                 
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                likeCount.textContent = count;
             });
         });
 
-        // Music Notes Animation
-        function createMusicNotes() {
-            const notes = ['♪', '♫', '♩', '♬', '♭', '♮'];
-            const colors = ['#e67e22', '#f5deb3', '#ffffff', '#ffcc99'];
-            
-            for (let i = 0; i < 20; i++) {
-                const note = document.createElement('div');
-                note.className = 'music-note';
-                note.textContent = notes[Math.floor(Math.random() * notes.length)];
-                note.style.left = Math.random() * 100 + 'vw';
-                note.style.top = Math.random() * 100 + 'vh';
-                note.style.fontSize = (Math.random() * 20 + 10) + 'px';
-                note.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                note.style.animationDelay = (Math.random() * 5) + 's';
-                note.style.color = colors[Math.floor(Math.random() * colors.length)];
-                document.getElementById('musicNotes').appendChild(note);
-            }
-        }
+        // Golden Orb Cursor Trail
+        const cursorTrail = document.querySelector('.cursor-trail');
+        
+        document.addEventListener('mousemove', function(e) {
+            cursorTrail.style.left = e.pageX + 'px';
+            cursorTrail.style.top = e.pageY + 'px';
+        });
+        
+        document.addEventListener('mousedown', function() {
+            cursorTrail.classList.add('active');
+        });
+        
+        document.addEventListener('mouseup', function() {
+            cursorTrail.classList.remove('active');
+        });
 
-        createMusicNotes();
+        // Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.slide-in, .fade-in').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
