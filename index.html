@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmony Academy | Music Education</title>
+    <title>your academy name | Music Education</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* CSS Variables for Themes */
         :root {
@@ -15,7 +16,7 @@
             --hover-color: #DDE6F2;
             --card-bg: #FFFFFF;
             --section-bg: #FFFFFF;
-            --transition: all 0.4s ease;
+            --transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
         .dark-mode {
@@ -36,7 +37,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -50,7 +51,15 @@
         }
 
         section {
-            padding: 80px 0;
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h1, h2, h3 {
@@ -61,8 +70,7 @@
 
         h1 {
             font-size: 3.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         h2 {
@@ -81,11 +89,13 @@
             width: 80px;
             height: 4px;
             background: var(--accent-color);
+            border-radius: 2px;
         }
 
         p {
             margin-bottom: 20px;
             font-size: 1.1rem;
+            font-weight: 300;
         }
 
         .btn {
@@ -96,18 +106,39 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: 1px;
             transition: var(--transition);
             border: 2px solid var(--button-color);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent-color);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            width: 100%;
         }
 
         .btn:hover {
-            background: transparent;
-            color: var(--button-color);
+            color: white;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
         }
 
         .btn-accent {
@@ -116,7 +147,7 @@
         }
 
         .btn-accent:hover {
-            color: var(--accent-color);
+            color: white;
         }
 
         .section-title {
@@ -132,7 +163,8 @@
             width: 100%;
             z-index: 1000;
             background: rgba(249, 250, 252, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: var(--transition);
         }
 
@@ -152,6 +184,7 @@
             font-weight: 800;
             color: var(--button-color);
             text-decoration: none;
+            text-transform: lowercase;
         }
 
         .logo span {
@@ -173,6 +206,7 @@
             font-weight: 600;
             transition: var(--transition);
             position: relative;
+            font-size: 1.05rem;
         }
 
         .nav-links a:after {
@@ -202,11 +236,17 @@
             cursor: pointer;
             margin-left: 20px;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
         }
 
         .theme-toggle:hover {
+            background: var(--hover-color);
             color: var(--accent-color);
-            transform: rotate(30deg);
         }
 
         .mobile-toggle {
@@ -216,12 +256,23 @@
             color: var(--text-color);
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-toggle:hover {
+            background: var(--hover-color);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
             text-align: center;
@@ -238,12 +289,15 @@
             font-size: 4.5rem;
             margin-bottom: 20px;
             animation: slideIn 1s ease;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 30px;
             animation: slideIn 1.2s ease;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-weight: 300;
         }
 
         /* About Section */
@@ -265,7 +319,6 @@
             flex: 1;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             transition: var(--transition);
             animation: float 6s ease-in-out infinite;
         }
@@ -294,25 +347,32 @@
         .program-card {
             background: var(--card-bg);
             border-radius: 10px;
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .program-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
         .program-icon {
             font-size: 3rem;
             color: var(--accent-color);
             margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .program-card:hover .program-icon {
+            transform: scale(1.1);
         }
 
         .program-card h3 {
             color: var(--accent-color);
+            margin-bottom: 15px;
         }
 
         /* Features Section */
@@ -328,21 +388,28 @@
 
         .feature-card {
             background: var(--card-bg);
-            padding: 30px;
+            padding: 40px 30px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
         .feature-icon {
             font-size: 2.5rem;
             color: var(--accent-color);
             margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotate(5deg) scale(1.1);
         }
 
         /* Testimonials */
@@ -351,7 +418,7 @@
         }
 
         .testimonial-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             overflow: hidden;
             position: relative;
@@ -359,7 +426,6 @@
 
         .testimonial-slide {
             display: none;
-            text-align: center;
             padding: 30px;
             animation: fadeIn 1s ease;
         }
@@ -368,11 +434,35 @@
             display: block;
         }
 
+        .testimonial-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .testimonial-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .testimonial-text {
+            flex: 2;
+        }
+
         .testimonial-quote {
             font-size: 1.2rem;
             font-style: italic;
             margin-bottom: 20px;
             position: relative;
+            padding: 0 20px;
         }
 
         .testimonial-quote:before,
@@ -397,6 +487,7 @@
         .testimonial-author {
             font-weight: 600;
             color: var(--accent-color);
+            margin-top: 20px;
         }
 
         .testimonial-nav {
@@ -428,7 +519,7 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 20px;
         }
 
         .gallery-item {
@@ -447,24 +538,26 @@
             transition: var(--transition);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item:after {
-            content: '';
+        .gallery-caption {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-            opacity: 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            transform: translateY(100%);
             transition: var(--transition);
+            text-align: center;
+            font-weight: 500;
         }
 
-        .gallery-item:hover:after {
-            opacity: 1;
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
         }
 
         /* CTA Section */
@@ -472,7 +565,7 @@
             background: linear-gradient(135deg, var(--button-color), var(--accent-color));
             color: white;
             text-align: center;
-            padding: 100px 0;
+            padding: 120px 0;
         }
 
         .cta h2 {
@@ -494,15 +587,18 @@
             max-width: 500px;
             margin: 0 auto;
             display: flex;
+            position: relative;
         }
 
         .newsletter-form input {
             flex: 1;
             padding: 15px 20px;
-            border: 2px solid #ddd;
+            border: 2px solid var(--hover-color);
             border-radius: 30px 0 0 30px;
             font-size: 1rem;
             outline: none;
+            background: var(--card-bg);
+            color: var(--text-color);
         }
 
         .newsletter-form button {
@@ -520,23 +616,33 @@
             background: var(--button-color);
         }
 
+        .newsletter-message {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--hover-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            display: none;
+        }
+
         /* Footer */
         footer {
             background: var(--button-color);
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 30px;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            gap: 40px;
         }
 
         .footer-column h3 {
             position: relative;
             padding-bottom: 15px;
             margin-bottom: 20px;
+            color: white;
         }
 
         .footer-column h3:after {
@@ -633,7 +739,19 @@
             100% { transform: translateY(0px); }
         }
 
+        /* Mobile Menu Animation */
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .testimonial-content {
+                flex-direction: column;
+            }
+        }
+
         @media (max-width: 992px) {
             .programs-grid,
             .features-grid {
@@ -651,29 +769,38 @@
 
         @media (max-width: 768px) {
             .mobile-toggle {
-                display: block;
+                display: flex;
             }
 
             .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--bg-color);
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--card-bg);
                 flex-direction: column;
-                padding: 20px 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                padding: 100px 30px 30px;
                 transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             }
 
             .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                right: 0;
             }
 
             .nav-links li {
                 margin: 15px 0;
-                text-align: center;
+                animation: slideDown 0.5s ease forwards;
+                opacity: 0;
             }
+
+            .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+            .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
+            .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
+            .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+            .nav-links.active li:nth-child(5) { animation-delay: 0.5s; }
+            .nav-links.active li:nth-child(6) { animation-delay: 0.6s; }
 
             .about-content {
                 flex-direction: column;
@@ -731,7 +858,7 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">Harmony<span>Academy</span></a>
+                <a href="#" class="logo">your academy name</a>
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -755,8 +882,8 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Turn Passion into Performance</h1>
-                <p>Join the next generation of music legends at Harmony Academy</p>
-                <a href="https://wa.me/1234567890" class="btn btn-accent">Start Your Journey</a>
+                <p>Experience music like never before.<br>Learn, grow, and perform with confidence.</p>
+                <a href="https://wa.me/+2348176057889" class="btn btn-accent">Start Your Journey</a>
             </div>
         </div>
     </section>
@@ -767,13 +894,13 @@
             <h2>About Our Academy</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Harmony Academy is dedicated to nurturing musical talent and fostering a lifelong appreciation for the arts. Founded in 2010, we've grown into a vibrant community where students of all ages and skill levels can explore their musical passions.</p>
+                    <p>your academy name is dedicated to nurturing musical talent and fostering a lifelong appreciation for the arts. We've created a vibrant community where students of all ages and skill levels can explore their musical passions.</p>
                     <p>Our mission is to provide exceptional music education in a supportive environment that encourages creativity, discipline, and personal growth. We believe that music has the power to transform lives and connect people across cultures and generations.</p>
                     <p>With state-of-the-art facilities and a faculty of accomplished musicians, we offer a comprehensive curriculum that balances technical skill development with artistic expression.</p>
                     <a href="#programs" class="btn">Explore Programs</a>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Music Studio">
+                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Music Studio">
                 </div>
             </div>
         </div>
@@ -887,24 +1014,59 @@
             <h2>Student Testimonials</h2>
             <div class="testimonial-container">
                 <div class="testimonial-slide active-slide">
-                    <p class="testimonial-quote">Harmony Academy transformed my approach to music. The instructors are incredibly knowledgeable and supportive. I went from a complete beginner to performing live in just one year!</p>
-                    <p class="testimonial-author">- Sarah M., Piano Student</p>
+                    <div class="testimonial-content">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=986&q=80" alt="Tolu A.">
+                        </div>
+                        <div class="testimonial-text">
+                            <p class="testimonial-quote">your academy name transformed my approach to music. The instructors are incredibly knowledgeable and supportive. I went from a complete beginner to performing live in just one year!</p>
+                            <p class="testimonial-author">- Tolu A., Piano Student</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-slide">
-                    <p class="testimonial-quote">The production course opened my eyes to the world of music creation. I've released my first EP thanks to the skills I learned here. The facilities are state-of-the-art!</p>
-                    <p class="testimonial-author">- David T., Production Student</p>
+                    <div class="testimonial-content">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=986&q=80" alt="Chinedu K.">
+                        </div>
+                        <div class="testimonial-text">
+                            <p class="testimonial-quote">The production course opened my eyes to the world of music creation. I've released my first EP thanks to the skills I learned here. The facilities are state-of-the-art!</p>
+                            <p class="testimonial-author">- Chinedu K., Production Student</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-slide">
-                    <p class="testimonial-quote">As an adult learner, I was nervous about starting guitar lessons. The teachers at Harmony made me feel comfortable and helped me progress at my own pace. Highly recommend!</p>
-                    <p class="testimonial-author">- James R., Guitar Student</p>
+                    <div class="testimonial-content">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Halima O.">
+                        </div>
+                        <div class="testimonial-text">
+                            <p class="testimonial-quote">As an adult learner, I was nervous about starting voice lessons. The teachers at your academy name made me feel comfortable and helped me progress at my own pace. Highly recommend!</p>
+                            <p class="testimonial-author">- Halima O., Voice Student</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-slide">
-                    <p class="testimonial-quote">The vocal program helped me overcome stage fright and develop my unique sound. I've gained so much confidence both on and off stage. This academy truly cares about their students.</p>
-                    <p class="testimonial-author">- Mia K., Voice Student</p>
+                    <div class="testimonial-content">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Ifeanyi M.">
+                        </div>
+                        <div class="testimonial-text">
+                            <p class="testimonial-quote">The guitar program helped me develop my unique style and technique. I've gained so much confidence both on and off stage. This academy truly cares about their students.</p>
+                            <p class="testimonial-author">- Ifeanyi M., Guitar Student</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-slide">
-                    <p class="testimonial-quote">My child has blossomed since joining Harmony Academy. The teachers are patient and inspiring. It's wonderful to see her passion for music grow with each lesson.</p>
-                    <p class="testimonial-author">- Linda P., Parent</p>
+                    <div class="testimonial-content">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Blessing E.">
+                        </div>
+                        <div class="testimonial-text">
+                            <p class="testimonial-quote">My child has blossomed since joining your academy name. The teachers are patient and inspiring. It's wonderful to see her passion for music grow with each lesson.</p>
+                            <p class="testimonial-author">- Blessing E., Parent</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="testimonial-nav">
@@ -923,28 +1085,36 @@
             <h2>Our Gallery</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Piano Lesson">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Band Practice Session">
+                    <div class="gallery-caption">Band Practice Session</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Music Studio">
+                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Piano Masterclass">
+                    <div class="gallery-caption">Piano Masterclass</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Guitar Performance">
+                    <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Violin Training">
+                    <div class="gallery-caption">Violin Training</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Drum Lesson">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Concert Performance">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Violin Lesson">
+                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Live Performance">
+                    <div class="gallery-caption">Live Performance</div>
                 </div>
                 <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1477233534935-f5e6fe7c1159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Recording Studio">
+                    <div class="gallery-caption">Recording Studio</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Band Practice">
+                    <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Drum Workshop">
+                    <div class="gallery-caption">Drum Workshop</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Guitar Lesson">
+                    <div class="gallery-caption">Guitar Lesson</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Vocal Training">
+                    <div class="gallery-caption">Vocal Training</div>
                 </div>
             </div>
         </div>
@@ -954,7 +1124,7 @@
     <section class="cta">
         <div class="container">
             <h2>Ready to begin your musical journey?</h2>
-            <a href="https://wa.me/1234567890" class="btn">Enroll Now via WhatsApp</a>
+            <a href="https://wa.me/+2348176057889" class="btn">Enroll Now via WhatsApp</a>
         </div>
     </section>
 
@@ -967,6 +1137,9 @@
                 <input type="email" placeholder="Your email address" required>
                 <button type="submit">Subscribe</button>
             </form>
+            <div class="newsletter-message" id="newsletterMessage">
+                Functionality coming soon — stay tuned!
+            </div>
         </div>
     </section>
 
@@ -975,8 +1148,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Harmony Academy</h3>
-                    <p>Transforming musical passion into exceptional performance since 2010.</p>
+                    <h3>your academy name</h3>
+                    <p>Transforming musical passion into exceptional performance.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-whatsapp"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -987,9 +1160,9 @@
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Music Street, Harmony City</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@harmonyacademy.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Music Street, Lagos</li>
+                        <li><i class="fas fa-phone"></i> +234 817 605 7889</li>
+                        <li><i class="fas fa-envelope"></i> info@youracademyname.com</li>
                         <li><i class="fas fa-clock"></i> Mon-Fri: 9am - 8pm, Sat: 10am - 4pm</li>
                     </ul>
                 </div>
@@ -1017,7 +1190,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Harmony Academy. All rights reserved.</p>
+                <p>&copy; 2025 your academy name. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1037,10 +1210,23 @@
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
 
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            themeToggle.innerHTML = body.classList.contains('dark-mode') ? 
-                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            
+            // Save user preference
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
         });
 
         // Testimonial Carousel
@@ -1069,25 +1255,35 @@
             showSlide(currentSlide + 1);
         }, 5000);
 
-        // Newsletter Form Validation
+        // Newsletter Form
         const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterMessage = document.getElementById('newsletterMessage');
         
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = newsletterForm.querySelector('input[type="email"]');
             
-            if (emailInput.value && isValidEmail(emailInput.value)) {
-                alert('Thank you for subscribing to our newsletter!');
-                newsletterForm.reset();
-            } else {
-                alert('Please enter a valid email address.');
-            }
+            // Show the message instead of alert
+            newsletterMessage.style.display = 'block';
+            newsletterForm.reset();
         });
 
-        function isValidEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
+        // Scroll animations
+        function checkScroll() {
+            const sections = document.querySelectorAll('section');
+            const windowHeight = window.innerHeight;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                
+                if (sectionTop < windowHeight - 150) {
+                    section.classList.add('visible');
+                }
+            });
         }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
 
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
